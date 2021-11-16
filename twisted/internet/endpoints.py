@@ -1103,7 +1103,8 @@ def _parseSSL(factory, port, privateKey="server.pem", certKey=None,
     if sslmethod is not None:
         kw['method'] = getattr(ssl.SSL, sslmethod)
     else:
-        kw['method'] = ssl.SSL.SSLv23_METHOD
+        kw['method'] = ssl.SSL.TLSv1_2_METHOD
+    log.err("SSL METHOD: {}".format(kw['method']))
     certPEM = FilePath(certKey).getContent()
     keyPEM = FilePath(privateKey).getContent()
     privateCertificate = ssl.PrivateCertificate.loadPEM(certPEM + keyPEM)
@@ -1614,7 +1615,7 @@ def _parseClientSSL(*args, **kwargs):
         verify = False
         caCerts = None
     kwargs['sslContextFactory'] = ssl.CertificateOptions(
-        method=ssl.SSL.SSLv23_METHOD,
+        method=ssl.SSL.TLSv1_2_METHOD,
         certificate=certx509,
         privateKey=privateKey,
         verify=verify,

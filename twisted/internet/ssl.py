@@ -53,7 +53,7 @@ class DefaultOpenSSLContextFactory(ContextFactory):
     _context = None
 
     def __init__(self, privateKeyFileName, certificateFileName,
-                 sslmethod=SSL.SSLv23_METHOD, _contextFactory=SSL.Context):
+                 sslmethod=SSL.TLSv1_2_METHOD, _contextFactory=SSL.Context):
         """
         @param privateKeyFileName: Name of a file containing a private key
         @param certificateFileName: Name of a file containing a certificate
@@ -105,7 +105,7 @@ class ClientContextFactory:
 
     # SSLv23_METHOD allows SSLv2, SSLv3, and TLSv1.  We disable SSLv2 below,
     # though.
-    method = SSL.SSLv23_METHOD
+    method = SSL.TLSv1_2_METHOD
 
     _contextFactory = SSL.Context
 
