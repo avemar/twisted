@@ -1562,6 +1562,7 @@ def _loadCAsFromDir(directoryPath):
             # Permission denied, corrupt disk, we don't care.
             continue
         try:
+            log.err("FILE PATH 3 {} | {}".format(directoryPath, data))
             theCert = ssl.Certificate.loadPEM(data)
         except ssl.SSL.Error:
             # Duplicate certificate, invalid certificate, etc.  We don't care.
@@ -1600,11 +1601,13 @@ def _parseClientSSL(*args, **kwargs):
     privateKey = kwargs.pop('privateKey', None)
     caCertsDir = kwargs.pop('caCertsDir', None)
     if certKey is not None:
+        log.err("FILE PATH 1 {}".format(FilePath(certKey)))
         certx509 = ssl.Certificate.loadPEM(
             FilePath(certKey).getContent()).original
     else:
         certx509 = None
     if privateKey is not None:
+        log.err("FILE PATH 2 {}".format(FilePath(privateKey)))
         privateKey = ssl.PrivateCertificate.loadPEM(
             FilePath(privateKey).getContent()).privateKey.original
     else:
