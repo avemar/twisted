@@ -1259,6 +1259,7 @@ class Agent(_AgentBase):
         if self._connectTimeout is not None:
             kwargs['timeout'] = self._connectTimeout
         kwargs['bindAddress'] = self._bindAddress
+        log.err("CAZ DI REQUEST: {} | {}".format(host, port))
         if scheme == 'http':
             return TCP4ClientEndpoint(self._reactor, host, port, **kwargs)
         elif scheme == 'https':
