@@ -864,6 +864,7 @@ class SSL4ClientEndpoint(object):
         """
         try:
             wf = _WrappingFactory(protocolFactory)
+            log.err("SSL CONNECT: {} | {}".format(wf, self._sslContextFactory))
             self._reactor.connectSSL(
                 self._host, self._port, wf, self._sslContextFactory,
                 timeout=self._timeout, bindAddress=self._bindAddress)
